@@ -3,10 +3,9 @@ package com.sasor.todoapp.controller;
 import com.sasor.todoapp.dto.in.TaskDto;
 import com.sasor.todoapp.persistence.entities.Task;
 import com.sasor.todoapp.service.TaskService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
@@ -22,5 +21,11 @@ public class TaskController
     public Task createTask(@RequestBody TaskDto payload)
     {
         return this.service.createTask(payload);
+    }
+
+    @GetMapping
+    public List<Task> findAll()
+    {
+        return this.service.findAll();
     }
 }

@@ -6,6 +6,8 @@ import com.sasor.todoapp.persistence.entities.Task;
 import com.sasor.todoapp.persistence.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService
 {
@@ -22,5 +24,10 @@ public class TaskService
     {
         Task task = this.toTaskMapper.map(dto);
         return this.taskRepository.save(task);
+    }
+
+    public List<Task> findAll()
+    {
+        return this.taskRepository.findAll();
     }
 }
