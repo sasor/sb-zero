@@ -3,6 +3,7 @@ package com.sasor.todoapp.service;
 import com.sasor.todoapp.dto.in.TaskDto;
 import com.sasor.todoapp.mapper.TaskDTOToTask;
 import com.sasor.todoapp.persistence.entities.Task;
+import com.sasor.todoapp.persistence.entities.TaskStatus;
 import com.sasor.todoapp.persistence.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,10 @@ public class TaskService
     public List<Task> findAll()
     {
         return this.taskRepository.findAll();
+    }
+
+    public List<Task> findAllByTaskStatus(TaskStatus status)
+    {
+        return this.taskRepository.findAllByStatus(status);
     }
 }
