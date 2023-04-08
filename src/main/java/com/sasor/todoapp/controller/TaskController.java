@@ -4,6 +4,7 @@ import com.sasor.todoapp.dto.in.TaskDto;
 import com.sasor.todoapp.persistence.entities.Task;
 import com.sasor.todoapp.persistence.entities.TaskStatus;
 import com.sasor.todoapp.service.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public class TaskController
     public List<Task> findAllByTaskStatus(@PathVariable("status") TaskStatus status)
     {
         return this.service.findAllByTaskStatus(status);
+    }
+
+    @PatchMapping("/{id}/finished")
+    public ResponseEntity<Void> updateTaskAsFinished(@PathVariable("id") Long id)
+    {
+        this.service.markTaskAsFinished(id);
+        return ResponseEntity.noContent().build();
     }
 }
