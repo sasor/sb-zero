@@ -50,4 +50,13 @@ public class TaskService
         }
         this.taskRepository.markTaskAsFinished(id);
     }
+
+    public void deleteOneTask(Long id)
+    {
+        Optional<Task> task = this.taskRepository.findById(id);
+        if (task.isEmpty()) {
+            throw new TaskException("Task not found", HttpStatus.NOT_FOUND);
+        }
+        this.taskRepository.deleteById(id);
+    }
 }
